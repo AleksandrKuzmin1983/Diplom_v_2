@@ -1,0 +1,48 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{9B120508-3516-472C-99E8-EBAD59B91F63}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="..\WorkDBver1.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\..\QueryForm\QueryFormP.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="WorkDBver1">
+			<MSBuild Projects="..\WorkDBver1.dproj"/>
+		</Target>
+		<Target Name="WorkDBver1:Clean">
+			<MSBuild Targets="Clean" Projects="..\WorkDBver1.dproj"/>
+		</Target>
+		<Target Name="WorkDBver1:Make">
+			<MSBuild Targets="Make" Projects="..\WorkDBver1.dproj"/>
+		</Target>
+		<Target Name="QueryFormP">
+			<MSBuild Projects="..\..\QueryForm\QueryFormP.dproj"/>
+		</Target>
+		<Target Name="QueryFormP:Clean">
+			<MSBuild Targets="Clean" Projects="..\..\QueryForm\QueryFormP.dproj"/>
+		</Target>
+		<Target Name="QueryFormP:Make">
+			<MSBuild Targets="Make" Projects="..\..\QueryForm\QueryFormP.dproj"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="WorkDBver1;QueryFormP"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="WorkDBver1:Clean;QueryFormP:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="WorkDBver1:Make;QueryFormP:Make"/>
+		</Target>
+		<Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+	</Project>
